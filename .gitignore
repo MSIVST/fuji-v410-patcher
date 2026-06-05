@@ -1,0 +1,42 @@
+# Local firmware and generated update files
+*.gcd
+*.GCD
+*.rgn
+*.RGN
+*.bin
+*.BIN
+*.img
+*.IMG
+*.gma
+*.GMA
+*.unl
+*.UNL
+
+# Release assets should be uploaded to GitHub Releases, not committed
+release-assets/*.zip
+release-assets/*.exe
+!release-assets/SHA256SUMS.txt
+
+# Python/cache/build output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+build/
+dist/
+*.spec
+
+# Local editor/OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+
+# Local reverse-engineering/project artifacts
+artifacts/
+ghidra/
+Ghidra_Proj/
+*.log
+*.dmp
+*.tmp

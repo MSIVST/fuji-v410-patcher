@@ -1,0 +1,31 @@
+name: Feature or future patch request
+description: Request a new patch area such as WMA, Bluetooth, or media database behavior.
+title: "[Request]: "
+labels: ["enhancement", "needs-research"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - WMA playback
+        - Bluetooth reconnect/message behavior
+        - MP3 playback
+        - Media database
+        - Startup behavior
+        - Map reminder/maps
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Desired behavior
+      description: What should change, and what should stay untouched?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or reproduction notes
+      description: Include sanitized logs, file details, and exact steps if available.

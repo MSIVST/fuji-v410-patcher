@@ -1,0 +1,51 @@
+name: Bug report
+description: Report a patcher problem, update issue, or regression.
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not attach Garmin/Suzuki firmware, patched firmware, extracted firmware, maps, keys, or private logs.
+  - type: input
+    id: patcher-version
+    attributes:
+      label: Patcher version
+      placeholder: "v1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: unit
+    attributes:
+      label: Unit part number
+      placeholder: "39920-61M80, 39920-61MR1, unknown"
+  - type: dropdown
+    id: region
+    attributes:
+      label: Firmware region
+      options:
+        - NA
+        - AU
+        - EU
+        - IN
+        - RU
+        - Unknown
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the behavior, screen message, or regression.
+    validations:
+      required: true
+  - type: textarea
+    id: recovery
+    attributes:
+      label: Recovery status
+      description: Did removing update media or flashing stock firmware recover the unit?
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs or notes
+      description: Remove serial numbers, phone identifiers, personal paths, and location data before posting.

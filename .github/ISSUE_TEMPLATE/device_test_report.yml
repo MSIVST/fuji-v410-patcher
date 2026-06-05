@@ -1,0 +1,51 @@
+name: Device test report
+description: Share test results from a real unit.
+title: "[Test]: "
+labels: ["device-test"]
+body:
+  - type: input
+    id: unit
+    attributes:
+      label: Unit part number
+      placeholder: "39920-61M80, 39920-61MR1, unknown"
+    validations:
+      required: true
+  - type: dropdown
+    id: region
+    attributes:
+      label: Firmware region tested
+      options:
+        - NA
+        - AU
+        - EU
+        - IN
+        - RU
+        - Unknown
+    validations:
+      required: true
+  - type: input
+    id: patcher-version
+    attributes:
+      label: Patcher version
+      placeholder: "v1.0.0"
+    validations:
+      required: true
+  - type: checkboxes
+    id: tests
+    attributes:
+      label: Tests performed
+      options:
+        - label: Startup warning bypass
+        - label: MP3 playback from beginning
+        - label: MP3 seek/fast-forward
+        - label: WMA sanity check
+        - label: Bluetooth reconnect sanity check
+        - label: Map reminder text/interval sanity check
+        - label: Stock firmware recovery available
+  - type: textarea
+    id: result
+    attributes:
+      label: Results
+      description: What worked, what failed, and anything unusual.
+    validations:
+      required: true
