@@ -8,7 +8,7 @@ Unofficial patcher for official Suzuki Garmin Fuji v4.10 `GUPDATE.GCD` files.
 
 This patcher exists to make three small, targeted quality-of-life changes while keeping the official Suzuki Garmin Fuji v4.10 firmware structure intact.
 
-- **Startup [warning](https://i.imgur.com/ZlZu8yr.jpeg):** the factory warning page requires a manual `Agree` press on every startup. This patch automatically advances through the existing startup flow so the unit lands on the normal last-used screen.
+- **Startup [warning](https://i.imgur.com/ZlZu8yr.jpeg):** the factory warning page requires a manual `Agree` press on every startup. This patch automatically advances through the existing startup flow so the unit lands on the normal [last-used](https://streamable.com/b7gfsn) screen.
 - **MP3 cutoff:** Fresh MP3 playback could advance before the playback backend drained the final audio tail. This would cut-off about ~250ms audio from the end of the currently-playing file, before advancing to the next track.
 	
 	'Seek' or 'resume' playback did not show the same cutoff.
