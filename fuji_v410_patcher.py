@@ -17,7 +17,7 @@ import fuji_v410_delta as delta
 
 
 TOOL_NAME = "Suzuki Garmin Fuji v4.10 patcher"
-TOOL_VERSION = "1.2.0"
+TOOL_VERSION = "1.2.1"
 PROJECT_URL = "https://github.com/MSIVST/fuji-v410-patcher"
 
 PATCH_SET_HELP = (
@@ -695,7 +695,7 @@ def patch_gcd(
 
 
 def default_output_path(input_path: Path) -> Path:
-    return input_path.with_name(input_path.stem + "_patched_v1.2.0" + input_path.suffix)
+    return input_path.with_name(input_path.stem + "_patched_v1.2.1" + input_path.suffix)
 
 
 def build_arg_parser() -> argparse.ArgumentParser:

@@ -11,10 +11,10 @@ import fuji_v410_patcher as patcher
 
 class PublicReleaseTests(unittest.TestCase):
     def test_release_identity_and_strict_cli(self) -> None:
-        self.assertEqual(patcher.TOOL_VERSION, "1.2.0")
+        self.assertEqual(patcher.TOOL_VERSION, "1.2.1")
         self.assertEqual(
             patcher.default_output_path(Path("GUPDATE.GCD")).name,
-            "GUPDATE_patched_v1.2.0.GCD",
+            "GUPDATE_patched_v1.2.1.GCD",
         )
         help_text = patcher.build_arg_parser().format_help()
         self.assertIn("--overwrite", help_text)

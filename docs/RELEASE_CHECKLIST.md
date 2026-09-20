@@ -19,7 +19,7 @@ Use this before publishing a new public release.
 - [ ] Generated patched hash matches the README for at least one known stock input.
 - [ ] Windows GUI opens by double-click.
 - [ ] PowerShell no-argument launch prints usage.
-- [ ] The release ZIP contains only the EXE, README, license, source, tests, build files, and checksum list.
+- [ ] The release ZIP contains only the EXE, README, Technicals, Security, and Changelog files.
 
 ## Release Asset
 
@@ -35,7 +35,7 @@ release from the exact reviewed commit:
 
 ```powershell
 git status
-git tag -a v1.2.0 -m "Fuji v4.10 patcher v1.2.0"
-git push origin v1.2.0
-gh release create v1.2.0 release-assets/FujiV410Patcher-v1.2.0-x86-win7.zip --title "Fuji v4.10 Patcher v1.2.0" --notes-file docs/releases/v1.2.0.md
+git tag -a v1.2.1 -m "Fuji v4.10 patcher v1.2.1"
+git push origin v1.2.1
+gh release create v1.2.1 release-assets/FujiV410Patcher-v1.2.1-x86-win7.zip --title "Fuji v4.10 Patcher v1.2.1" --notes-file docs/releases/v1.2.1.md
 ```

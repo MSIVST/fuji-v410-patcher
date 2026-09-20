@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.2.1 - 2026-09-19
+
+Packaging and documentation refresh; firmware output is unchanged from v1.2.0.
+
+- Reduces the release ZIP to the EXE, README, Technicals, Security, and Changelog files.
+- Keeps source, tests, build scripts, license, and supporting documents in the repository and GitHub source archives.
+- Uses neutral public naming for the embedded verified patch data.
+- Documents the firmware-side 1 MiB artwork limit explicitly.
+- Does not include Garmin/Suzuki firmware or patched firmware.
+
 ## v1.2.0 - 2026-09-19
 
 Release of the complete, non-selectable 2026.09.16 patch set.

@@ -10,7 +10,7 @@ $workRoot = Join-Path $projectRoot "build"
 $distRoot = Join-Path $projectRoot "dist"
 $releaseRoot = Join-Path $projectRoot "release-assets"
 $entryPoint = Join-Path $sourceRoot "fuji_v410_patcher_app.py"
-$releaseName = "FujiV410Patcher-v1.2.0-x86-win7.exe"
+$releaseName = "FujiV410Patcher-v1.2.1-x86-win7.exe"
 
 if ($PythonPath) {
     $python = [System.IO.Path]::GetFullPath($PythonPath)

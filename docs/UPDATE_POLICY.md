@@ -4,7 +4,7 @@ This project should stay boring on purpose. Each release should make a small num
 
 ## Current Stable Patch Set
 
-`v1.2.0` contains the complete, non-selectable 2026.09.16 patch set:
+`v1.2.1` contains the complete, non-selectable verified patch set:
 
 - Ogg/Vorbis playback and unsupported-channel guard.
 - Unsupported WMA/Vorbis admission guards.
@@ -38,7 +38,7 @@ Each module should document:
 
 ## Versioning
 
-- `v1.2.x`: bug fixes to the patcher tool or documentation only.
+- `v1.2.x`: bug fixes, packaging changes, or documentation updates only.
 - `v1.x.0`: new verified patch modules for Fuji v4.10.
 - `v2.0.0`: incompatible behavior changes, new firmware families, or major CLI/GUI changes.
 - Prerelease suffixes identify builds awaiting their stated hardware evidence.

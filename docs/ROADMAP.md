@@ -2,7 +2,7 @@
 
 This roadmap is intentionally cautious. Stable releases should prioritize tested, reversible, well-documented behavior.
 
-## Stable: v1.2.0
+## Stable: v1.2.1
 
 - Complete verified media/artwork/startup/MP3/map patch set.
 - Strict five-region stock-firmware verification.

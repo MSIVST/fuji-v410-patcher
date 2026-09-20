@@ -6,7 +6,7 @@ patch set locally, and writes a separate patched file.
 
 No Garmin/Suzuki firmware or patched firmware is included.
 
-## What v1.2.0 patcher does
+## What v1.2.1 patcher does
 
 - Ogg/Vorbis playback (2ch only).
 - Safer rejection of unsupported WMA formats.
@@ -27,9 +27,9 @@ Other regions are verified offline; `39920-61MR1` hardware is unverified.
 
 ## Use
 
-1. Download and extract `FujiV410Patcher-v1.2.0-x86-win7.zip`.
+1. Download and extract `FujiV410Patcher-v1.2.1-x86-win7.zip`.
 2. Obtain the official v4.10 `GUPDATE.GCD` for your region.
-3. Run `FujiV410Patcher-v1.2.0-x86-win7.exe`.
+3. Run `FujiV410Patcher-v1.2.1-x86-win7.exe`.
 4. Select the stock file and run **Dry-run / Analyze** first.
 5. If verification succeeds, select **Patch Firmware**.
 

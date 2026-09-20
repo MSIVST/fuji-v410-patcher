@@ -1,6 +1,6 @@
 # Fuji v4.10 Patcher Technicals
 
-This document describes the `v1.2.0` patch set, validation model, supported
+This document describes the `v1.2.1` patch set, validation model, supported
 inputs, build, and verification boundaries. The patcher contains transformation
 data and code only; it does not contain Garmin/Suzuki firmware.
 
@@ -131,20 +131,20 @@ Known official Garmin-hosted v4.10 files:
 Show help:
 
 ```powershell
-FujiV410Patcher-v1.2.0-x86-win7.exe
+FujiV410Patcher-v1.2.1-x86-win7.exe
 ```
 
 Analyze only:
 
 ```powershell
-FujiV410Patcher-v1.2.0-x86-win7.exe GUPDATE.GCD --dry-run
+FujiV410Patcher-v1.2.1-x86-win7.exe GUPDATE.GCD --dry-run
 ```
 
 Patch and optionally write a JSON report:
 
 ```powershell
-FujiV410Patcher-v1.2.0-x86-win7.exe GUPDATE.GCD -o GUPDATE_patched.gcd
-FujiV410Patcher-v1.2.0-x86-win7.exe GUPDATE.GCD -o GUPDATE_patched.gcd --report patch_report.json
+FujiV410Patcher-v1.2.1-x86-win7.exe GUPDATE.GCD -o GUPDATE_patched.gcd
+FujiV410Patcher-v1.2.1-x86-win7.exe GUPDATE.GCD -o GUPDATE_patched.gcd --report patch_report.json
 ```
 
 Use `--overwrite` only when intentionally replacing an existing output/report.
