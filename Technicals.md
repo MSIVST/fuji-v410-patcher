@@ -28,7 +28,7 @@ GCD checksum bytes that cover it.
    is no unknown-file override.
 3. It parses the GCD structure and locates the v4.10 `0x02BD` host region.
 4. It verifies the host hardware/software identity and exact stock host hash.
-5. It decodes the embedded v36 delta and applies its sorted, non-overlapping
+5. It decodes the embedded verified delta and applies its sorted, non-overlapping
    spans to the host payload.
 6. It verifies the exact patched host SHA-256.
 7. It repairs the affected visible GCD checksum blocks.
@@ -46,7 +46,7 @@ caves have dependencies; individual feature selection is not supported.
 | State | SHA-256 |
 |---|---|
 | Official stock host | `F566A42E1EA7A2CACD243E884A721209C024FB370635194F3C27B8B66928D3B6` |
-| Patched v36 host | `F550DBF7D3B9BC103297BBC315369D53C6C2738FE9ED83ABCB860FA3D59CC9F6` |
+| Patched host | `F550DBF7D3B9BC103297BBC315369D53C6C2738FE9ED83ABCB860FA3D59CC9F6` |
 
 ## Patch Set
 
@@ -73,7 +73,8 @@ caves have dependencies; individual feature selection is not supported.
   stored offset directly.
 - The transformed-art reader uses corrected ARM-state pointers for its
   allocate, read, and free veneers. The prior odd pointers entered those ARM
-  veneers as Thumb and caused a data abort; v36 clears those three low bits.
+  veneers as Thumb and caused a data abort; the released patch clears those
+  three low bits.
 - Corrupt or unreadable JPEG artwork is omitted rather than displayed in the
   observed tests. This is not a claim that every malformed image is safe.
 - PNG artwork is not supported by the unit, including PNG in an APIC frame.

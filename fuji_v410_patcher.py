@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import fuji_v410_delta_v36 as delta_v36
+import fuji_v410_delta as delta
 
 
 TOOL_NAME = "Suzuki Garmin Fuji v4.10 patcher"
@@ -49,9 +49,9 @@ KNOWN_STOCK_GCD_SHA256 = {
 
 # The patched host payload is identical for every 4.10 region, so a single
 # constant replaces what would otherwise be five per-region final GCD hashes.
-EXPECTED_PATCHED_HOST_SHA256 = delta_v36.PATCHED_HOST_SHA256
+EXPECTED_PATCHED_HOST_SHA256 = delta.PATCHED_HOST_SHA256
 
-if delta_v36.STOCK_HOST_SHA256 != SUPPORTED_HOST_SHA256:
+if delta.STOCK_HOST_SHA256 != SUPPORTED_HOST_SHA256:
     raise RuntimeError(
         "Embedded delta was generated against a different stock payload."
     )
@@ -167,7 +167,7 @@ class ChecksumRectifierChange:
     block_end_exclusive: int
 
 
-DELTA: list[tuple[int, bytes]] = delta_v36.load_delta()
+DELTA: list[tuple[int, bytes]] = delta.load_delta()
 
 
 @dataclass
@@ -186,7 +186,7 @@ class FeatureCheck:
 
 def _feature_checks() -> list[FeatureCheck]:
     checks: list[FeatureCheck] = []
-    for name, offset, description in delta_v36.FEATURES:
+    for name, offset, description in delta.FEATURES:
         for start, payload in DELTA:
             if start <= offset < start + len(payload):
                 cursor = offset - start

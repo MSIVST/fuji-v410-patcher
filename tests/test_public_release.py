@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import fuji_v410_delta_v36 as delta
+import fuji_v410_delta as delta
 import fuji_v410_patcher as patcher
 
 
