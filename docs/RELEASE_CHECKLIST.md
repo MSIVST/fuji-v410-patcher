@@ -19,20 +19,23 @@ Use this before publishing a new public release.
 - [ ] Generated patched hash matches the README for at least one known stock input.
 - [ ] Windows GUI opens by double-click.
 - [ ] PowerShell no-argument launch prints usage.
-- [ ] The release ZIP contains only the EXE, README, license, and source files.
+- [ ] The release ZIP contains only the EXE, README, license, source, tests, build files, and checksum list.
 
 ## Release Asset
 
 - [ ] ZIP is uploaded as a GitHub Release asset.
 - [ ] ZIP SHA-256 is included in release notes.
 - [ ] Release notes repeat that no firmware is included.
-- [ ] Release is marked prerelease if it contains experimental WMA/BT/media behavior.
+- [ ] Hardware-tested and offline-only compatibility claims remain distinct.
 
 ## Suggested Release Commands
 
+Review the branch, commit it, and merge it before tagging. Then create the
+release from the exact reviewed commit:
+
 ```powershell
 git status
-git tag -a v1.0.0 -m "Fuji v4.10 patcher v1.0.0"
-git push origin main --tags
-gh release create v1.0.0 release-assets/FujiV410Patcher_x86_v1_20260605.zip --title "FujiV410Patcher x86 v1.0.0" --notes-file docs/releases/v1.0.0.md
+git tag -a v1.2.0 -m "Fuji v4.10 patcher v1.2.0"
+git push origin v1.2.0
+gh release create v1.2.0 release-assets/FujiV410Patcher-v1.2.0-x86-win7.zip --title "Fuji v4.10 Patcher v1.2.0" --notes-file docs/releases/v1.2.0.md
 ```

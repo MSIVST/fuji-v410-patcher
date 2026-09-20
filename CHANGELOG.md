@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.2.0 - 2026-09-19
+
+Release of the complete, non-selectable 2026.09.16 patch set.
+
+- Adds Ogg/Vorbis playback and rejects streams with more than two channels.
+- Rejects WMA Pro, WMA Voice, and unsupported WMA Lossless profiles before indexing.
+- Adds WMA cover art, progressive JPEG dimensions, and JPEG artwork in supported ID3v2.3/v2.4 APIC frames.
+- Documents that corrupt or unreadable JPEG artwork is omitted and PNG artwork is not supported by the unit.
+- Pins all five supported regional stock-container hashes and the shared host-payload hashes.
+- Adds strict path-alias rejection, no-clobber output defaults, atomic output/report publication, and read-back verification.
+- Retains the v1.0.0 startup, MP3 seek, and map-reminder changes.
+- Does not include Garmin/Suzuki firmware or patched firmware.
+
+The North American build has physical-unit evidence. AU/EU/IN/RU support is
+offline-verified but has not been tested on corresponding regional hardware.
+
 ## v1.0.0 - 2026-06-05
 
 Initial public patcher release.

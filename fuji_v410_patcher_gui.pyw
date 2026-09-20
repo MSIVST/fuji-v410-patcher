@@ -4,16 +4,21 @@ import json
 import queue
 import threading
 import traceback
+import webbrowser
 from pathlib import Path
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 
 from fuji_v410_patcher import (
     KNOWN_STOCK_GCD_SHA256,
+    PATCH_SET_HELP,
+    PROJECT_URL,
     TOOL_NAME,
     TOOL_VERSION,
+    atomic_write_text,
     default_output_path,
     patch_gcd,
+    require_distinct_paths,
 )
 
 
@@ -27,7 +32,6 @@ class FujiPatcherApp(tk.Tk):
         self.input_var = tk.StringVar()
         self.output_var = tk.StringVar()
         self.report_var = tk.StringVar()
-        self.allow_unknown_var = tk.BooleanVar(value=False)
         self.write_report_var = tk.BooleanVar(value=False)
 
         self.queue: queue.Queue[tuple[str, object]] = queue.Queue()
@@ -47,7 +51,7 @@ class FujiPatcherApp(tk.Tk):
 
         subtitle = ttk.Label(
             root,
-            text="Select an official v4.10 GUPDATE.GCD. The tool verifies it, applies startup + MP3 + map365 patches, and writes a patched output file.",
+            text="Select an official v4.10 GUPDATE.GCD. The tool verifies it, applies the patch set, and writes a separate patched output file.",
             wraplength=760,
         )
         subtitle.grid(row=1, column=0, columnspan=3, sticky="we", pady=(4, 14))
@@ -68,14 +72,6 @@ class FujiPatcherApp(tk.Tk):
         self.report_button = ttk.Button(root, text="Report as...", command=self.browse_report)
         self.report_button.grid(row=4, column=2, sticky="e", pady=4)
 
-        opts = ttk.Frame(root)
-        opts.grid(row=5, column=0, columnspan=3, sticky="we", pady=(4, 10))
-        ttk.Checkbutton(
-            opts,
-            text="Allow unknown full-file hash if the host firmware payload still matches stock v4.10",
-            variable=self.allow_unknown_var,
-        ).pack(side=tk.LEFT)
-
         buttons = ttk.Frame(root)
         buttons.grid(row=6, column=0, columnspan=3, sticky="we", pady=(0, 10))
         self.analyze_button = ttk.Button(buttons, text="Dry-run / Analyze", command=lambda: self.start_job(dry_run=True))
@@ -83,6 +79,8 @@ class FujiPatcherApp(tk.Tk):
         self.patch_button = ttk.Button(buttons, text="Patch Firmware", command=lambda: self.start_job(dry_run=False))
         self.patch_button.pack(side=tk.LEFT, padx=8)
         ttk.Button(buttons, text="Clear Log", command=self.clear_log).pack(side=tk.LEFT, padx=8)
+        ttk.Button(buttons, text="Patch List", command=self.show_patch_set).pack(side=tk.RIGHT, padx=(0, 8))
+        ttk.Button(buttons, text="About", command=self.open_about).pack(side=tk.RIGHT)
 
         status_frame = ttk.LabelFrame(root, text="Status")
         status_frame.grid(row=7, column=0, columnspan=3, sticky="nsew")
@@ -158,6 +156,18 @@ class FujiPatcherApp(tk.Tk):
     def clear_log(self) -> None:
         self.log.delete("1.0", tk.END)
 
+    def show_patch_set(self) -> None:
+        messagebox.showinfo("Patch Set", PATCH_SET_HELP)
+
+    def open_about(self) -> None:
+        try:
+            opened = webbrowser.open_new_tab(PROJECT_URL)
+        except webbrowser.Error as exc:
+            messagebox.showerror("About", f"Could not open the project page:\n{exc}")
+            return
+        if not opened:
+            messagebox.showerror("About", f"Could not open the project page:\n{PROJECT_URL}")
+
     def log_line(self, text: str = "") -> None:
         self.log.insert(tk.END, text + "\n")
         self.log.see(tk.END)
@@ -183,8 +193,25 @@ class FujiPatcherApp(tk.Tk):
         if not input_path.exists():
             messagebox.showerror("Missing input", "Please select an existing official GUPDATE.GCD file.")
             return
-        if input_path.resolve() == output_path.resolve() and not dry_run:
-            messagebox.showerror("Unsafe output", "Output path must be different from input path.")
+        named_paths = [("input", input_path), ("output", output_path)]
+        if report_path:
+            named_paths.append(("report", report_path))
+        try:
+            require_distinct_paths(named_paths)
+        except ValueError as exc:
+            messagebox.showerror("Unsafe path", str(exc))
+            return
+        if not dry_run and output_path.exists():
+            messagebox.showerror(
+                "Existing output",
+                "The output file already exists. Choose a new output filename.",
+            )
+            return
+        if report_path and report_path.exists():
+            messagebox.showerror(
+                "Existing report",
+                "The report file already exists. Choose a new report filename.",
+            )
             return
 
         self.set_busy(True)
@@ -197,7 +224,7 @@ class FujiPatcherApp(tk.Tk):
 
         self.worker = threading.Thread(
             target=self._job_thread,
-            args=(input_path, output_path, report_path, dry_run, self.allow_unknown_var.get()),
+            args=(input_path, output_path, report_path, dry_run),
             daemon=True,
         )
         self.worker.start()
@@ -208,18 +235,29 @@ class FujiPatcherApp(tk.Tk):
         output_path: Path,
         report_path: Path | None,
         dry_run: bool,
-        allow_unknown_hash: bool,
     ) -> None:
         try:
             report = patch_gcd(
                 input_path=input_path,
                 output_path=output_path,
-                allow_unknown_hash=allow_unknown_hash,
                 dry_run=dry_run,
             )
             if report_path:
-                report_path.parent.mkdir(parents=True, exist_ok=True)
-                report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
+                try:
+                    atomic_write_text(
+                        report_path,
+                        json.dumps(report, indent=2) + "\n",
+                    )
+                except Exception:
+                    if not dry_run:
+                        self.queue.put(
+                            (
+                                "partial",
+                                (report, report_path, traceback.format_exc()),
+                            )
+                        )
+                        return
+                    raise
             self.queue.put(("success", (report, report_path, dry_run)))
         except Exception:
             self.queue.put(("error", traceback.format_exc()))
@@ -232,6 +270,9 @@ class FujiPatcherApp(tk.Tk):
                 if kind == "success":
                     report, report_path, dry_run = payload  # type: ignore[misc]
                     self._show_success(report, report_path, dry_run)
+                elif kind == "partial":
+                    report, report_path, error = payload  # type: ignore[misc]
+                    self._show_partial(report, report_path, error)
                 else:
                     self._show_error(str(payload))
         except queue.Empty:
@@ -259,6 +300,17 @@ class FujiPatcherApp(tk.Tk):
         self.log_line("ERROR")
         self.log_line(text)
         messagebox.showerror("Patch failed", "The patcher refused this file or hit an error. See the status log for details.")
+
+    def _show_partial(self, report: dict, report_path: Path, error: str) -> None:
+        self.log_line("PATCHED GCD WRITTEN AND VERIFIED; REPORT FAILED")
+        self.log_line(f"Patched GCD written: {report['output_file']}")
+        self.log_line(f"Report not written: {report_path}")
+        self.log_line(error)
+        messagebox.showwarning(
+            "Patch complete; report failed",
+            "The patched GCD was written and verified, but the optional JSON "
+            "report could not be written. See the status log for details.",
+        )
 
 
 if __name__ == "__main__":

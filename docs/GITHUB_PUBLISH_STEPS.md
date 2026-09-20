@@ -38,9 +38,9 @@ garmin suzuki fuji firmware-patcher infotainment mp3 automotive
 ## 3. Create Release
 
 ```powershell
-git tag -a v1.0.0 -m "FujiV410Patcher x86 v1.0.0"
-git push origin v1.0.0
-gh release create v1.0.0 release-assets/FujiV410Patcher_x86_v1_20260605.zip --title "FujiV410Patcher x86 v1.0.0" --notes-file docs/releases/v1.0.0.md
+git tag -a v1.2.0 -m "Fuji v4.10 patcher v1.2.0"
+git push origin v1.2.0
+gh release create v1.2.0 release-assets/FujiV410Patcher-v1.2.0-x86-win7.zip --title "Fuji v4.10 Patcher v1.2.0" --notes-file docs/releases/v1.2.0.md
 ```
 
 ## 4. Keep Firmware Out of GitHub

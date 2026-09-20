@@ -4,12 +4,16 @@ This project should stay boring on purpose. Each release should make a small num
 
 ## Current Stable Patch Set
 
-`v1.0.0` contains:
+`v1.2.0` contains the complete, non-selectable 2026.09.16 patch set:
 
+- Ogg/Vorbis playback and unsupported-channel guard.
+- Unsupported WMA/Vorbis admission guards.
+- WMA, progressive JPEG, and supported ID3v2.3/v2.4 JPEG artwork fixes.
 - Startup warning auto-advance.
 - MP3 fresh-open `0 ms` seek-path patch.
 - Map reminder interval changed from 28 days to 365 days.
 - Map reminder UI text changed from `28 Days` to `1 Year`.
+- Strict five-region input verification and atomic output/report writing.
 
 ## Future Fix Path
 
@@ -34,10 +38,10 @@ Each module should document:
 
 ## Versioning
 
-- `v1.0.x`: bug fixes to the patcher tool or documentation only.
-- `v1.x.0`: new optional patch modules, such as WMA or Bluetooth work.
+- `v1.2.x`: bug fixes to the patcher tool or documentation only.
+- `v1.x.0`: new verified patch modules for Fuji v4.10.
 - `v2.0.0`: incompatible behavior changes, new firmware families, or major CLI/GUI changes.
-- `v1.1.0-beta.1`: prerelease builds for device testing before a stable release.
+- Prerelease suffixes identify builds awaiting their stated hardware evidence.
 
 ## Release Channels
 

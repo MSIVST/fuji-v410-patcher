@@ -2,18 +2,12 @@
 
 This roadmap is intentionally cautious. Stable releases should prioritize tested, reversible, well-documented behavior.
 
-## Stable: v1.0.0
+## Stable: v1.2.0
 
-- Startup warning auto-advance.
-- MP3 end-of-track cutoff fix.
-- 365-day map reminder interval.
+- Complete verified media/artwork/startup/MP3/map patch set.
+- Strict five-region stock-firmware verification.
+- Atomic output/report writing and alias protection.
 - Public patcher distribution without firmware.
-
-## Candidate: v1.1.0
-
-- Improve region/test reporting.
-- Add optional diagnostic report output improvements.
-- Add clearer unsupported-firmware messages.
 
 ## Research: WMA
 
