@@ -80,6 +80,17 @@ caves have dependencies; individual feature selection is not supported.
 - Encrypted, linked, malformed, future-version, or guard-exceeding APIC data is
   unsupported and may be omitted while the audio file remains eligible.
 
+### 1 MiB Artwork Limit
+
+The patch set installs a firmware-side artwork limit of exactly 1 MiB
+(`1,048,576` bytes, or `0x00100000`). Artwork at or below that size is allowed;
+artwork above it is omitted/skipped so the unit does not allocate or read the
+oversized image. This applies to the patched Ogg/WMA artwork paths and to
+transformed ID3 APIC image data. It is an artwork-payload limit, not an audio
+file-size or pixel-dimension limit. The desktop patcher does not scan music
+files for this condition; the patched firmware enforces it during media
+processing.
+
 ## Supported Stock and Patched Hashes
 
 | Region | Stock bytes | Official stock SHA-256 | Expected patched SHA-256 |
