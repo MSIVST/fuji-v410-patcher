@@ -6,24 +6,24 @@ patch set locally, and writes a separate patched file.
 
 No Garmin/Suzuki firmware or patched firmware is included.
 
-## What v1.2.0 Adds
+## What v1.2.0 patcher does
 
-- Ogg/Vorbis playback with unsupported-channel protection.
+- Ogg/Vorbis playback (2ch only).
 - Safer rejection of unsupported WMA formats.
-- WMA, progressive JPEG, and supported ID3v2.3/v2.4 JPEG cover art.
+- WMA art, progressive JPEG, and supported ID3v2.3/v2.4 JPEG cover art.
 - Automatic startup-warning advance.
 - MP3 end-of-track cutoff fix.
 - One-year map-reminder option.
 - Strict stock-file validation and safer atomic output writing.
 
-JPEG is the supported artwork format. Corrupt/unreadable JPEG artwork is
+Note: JPEG is the supported artwork format. Corrupt/unreadable JPEG artwork is
 omitted; PNG artwork is not supported by the unit.
 
 ## Compatibility
 
 The patcher accepts only the pinned official v4.10 NA, AU, EU, IN, and RU
-firmware files. North American hardware `39920-61M80` has physical-unit test
-evidence. Other regions are verified offline; `39920-61MR1` is unverified.
+firmware files. Physically tested on North American hardware `39920-61M80`.
+Other regions are verified offline; `39920-61MR1` hardware is unverified.
 
 ## Use
 
