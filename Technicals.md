@@ -12,7 +12,7 @@ data and code only; it does not contain Garmin/Suzuki firmware.
 - Software version: `0x019A` (v4.10).
 - Patched host-region type: `0x02BD`.
 - Physically tested unit family: North American `39920-61M80`.
-- `39920-61MR1`: unverified.
+- `39920-61MR1` / `39920-61MR2` / `39920-61MR3`: unverified.
 - AU/EU/IN/RU: transformation verified offline; corresponding regional
   hardware has not been tested.
 
@@ -102,7 +102,7 @@ processing.
 | IN | `61,527,878` | `48ED8CFC4E76643A1A017E8787E232522006C58029326CE243DD3EAF7E6B8E89` | `041AD9254BDC90AF0C9711C61B4EF9ECCA19F72C74FFB5E69B3A67D883B1B5D7` |
 | RU | `79,275,178` | `15930479B7BFE69CB730976F3596A856AEB9B7AE1815898FC790F2A18DCC7D5A` | `8DC9DA8E0FA0585A14C6F7F286AB400378EFEAFF6F9CD99F543624A6C7DF21DF` |
 
-Known official Garmin-hosted v4.10 files:
+Known official Garmin-hosted v4.10 file links:
 
 | Region | URL |
 |---|---|
