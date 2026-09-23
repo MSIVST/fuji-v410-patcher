@@ -199,7 +199,7 @@ PyInstaller version other than 6.20.0.
 4. Park the vehicle and provide stable power. Never update while driving.
 5. Attempt the normal update first and follow the unit's prompts.
 6. If the unit ignores same-version firmware, the tested NA force-update entry
-   is: hold the physical **Voice** button and upper-left touchscreen corner
+   is: hold the physical **Voice** button and [upper-left touchscreen corner](https://i.imgur.com/8A54rNT.jpeg)
    while powering on; release after `LOADER` appears.
 7. Never remove power or media during the update. After completion, remove or
    rename the update file so it is not offered again.
