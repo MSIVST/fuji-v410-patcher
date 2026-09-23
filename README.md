@@ -1,5 +1,7 @@
 # Suzuki-Garmin-Fuji v4.10 Patcher
 
+![Logo](https://i.imgur.com/vQc1gWy.jpeg)
+
 An unofficial Windows/Python patcher for official Suzuki Garmin Fuji **v4.10**
 `GUPDATE.GCD` files. It verifies the supplied stock firmware, applies the full
 patch set locally, and writes a separate patched file.
